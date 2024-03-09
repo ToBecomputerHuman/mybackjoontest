@@ -19,24 +19,24 @@ public class backjoon_1654 {
             if (arr[i] > max) max = arr[i];
         }
 
-        bw.write(binarysearch(1, max) + "\n");
+        bw.write(binarysearch(0, max + 1) + "\n");
         bw.flush();
         bw.close();
     }
-    static long binarysearch(long fir, long las) {
+    static long binarysearch(long left, long right) {
         long mid = 0;
-        while (fir <= las) {
-            mid = (fir + las) / 2;
+        while (left < right) {
+            mid = (left + right) / 2;
             long count = 0;
             for (int i = 0; i < arr.length; i++) {
                 count += arr[i] / mid;
             }
             if (count >= n) {
-                fir = mid + 1;
+                left = mid + 1;
             }else {//count < n
-                las = mid;
+                right = mid;
             }
         }
-        return mid;
+        return left - 1;
     }
 }
